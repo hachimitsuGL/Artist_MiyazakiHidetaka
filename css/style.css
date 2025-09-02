@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+/* ------------------------- 全体共通 ------------------------- */
+:root {
+  --primary-color:#111111;
+  --base-color:#242424;
+  --accent-color:#AE904B;
+  --text-color:#E0E0E0;
+  --heading-color:#FFFFFF;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color:var(--primary-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    color:var(--heading-color);
+}
+
+a {
+    color: var(--accent-color);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
