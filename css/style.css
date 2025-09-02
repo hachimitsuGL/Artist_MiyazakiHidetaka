@@ -28,3 +28,27 @@ a {
   margin: 0;
   padding: 0;
 }
+
+.wrapper{
+  background-color: var(--primary-color);
+}
+/* ------------------------- HEADER ------------------------- */
+header{
+  background-color: var(--base-color);
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header nav ul{
+  padding: 2em;
+  list-style: none;
+  display: flex;
+  gap:2em;
+}
+
+header nav ul li a{
+  font-size: 1.5rem;
+  text-decoration: none;
+}
