@@ -4,6 +4,7 @@
 :root {
   --primary-color:#111111;
   --base-color:#242424;
+  --base-color_opacity:rgba(36,36,36,0.3);
   --accent-color:#AE904B;
   --text-color:#E0E0E0;
   --heading-color:#FFFFFF;
@@ -11,7 +12,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    color:var(--primary-color);
+    color:var(--text-color);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,13 +30,22 @@ a {
   padding: 0;
 }
 
+/* ------------------------- BACKGROUNDS ------------------------- */
 .wrapper{
-  background-color: var(--primary-color);
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
 }
+#index-wrapper{
+  background-image: url("../images/background_index.jpg");
+}
+
 /* ------------------------- HEADER ------------------------- */
 header{
   background-color: var(--base-color);
-  height: 10%;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,10 +55,25 @@ header nav ul{
   padding: 2em;
   list-style: none;
   display: flex;
-  gap:2em;
+  gap:10em;
 }
 
 header nav ul li a{
   font-size: 1.5rem;
   text-decoration: none;
 }
+
+/* ------------------------- Main 共通 ------------------------- */
+main{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--base-color_opacity);
+  background-size: cover;
+}
+
+
+/* ------------------------- Footer 共通 ------------------------- */
+footer
