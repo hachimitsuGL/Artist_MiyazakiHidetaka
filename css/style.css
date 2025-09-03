@@ -2,26 +2,31 @@
 
 /* ------------------------- 全体共通 ------------------------- */
 :root {
-  --primary-color:#111111;
-  --base-color:#242424;
-  --base-color_opacity:rgba(36,36,36,0.3);
-  --accent-color:#AE904B;
-  --text-color:#E0E0E0;
-  --heading-color:#FFFFFF;
+  --primary-color: #111111;
+  --base-color: #242424;
+  --base-color_opacity: rgba(36, 36, 36, 0.3);
+  --accent-color: #AE904B;
+  --text-color: #E0E0E0;
+  --heading-color: #FFFFFF;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    color:var(--text-color);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
-    color:var(--heading-color);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cinzel', serif;
+  color: var(--heading-color);
 }
 
 a {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 * {
@@ -31,49 +36,125 @@ a {
 }
 
 /* ------------------------- BACKGROUNDS ------------------------- */
-.wrapper{
-  min-height: 100vh;
+.wrapper {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   position: relative;
 }
-#index-wrapper{
+
+#index-wrapper {
   background-image: url("../images/background_index.jpg");
 }
 
 /* ------------------------- HEADER ------------------------- */
-header{
-  background-color: var(--base-color);
-  height: 5vh;
+header {
+  background-image: url("../images/background_header_footer.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 6vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-header nav ul{
-  padding: 2em;
+header nav ul {
   list-style: none;
   display: flex;
-  gap:10em;
+  gap: 6em;
 }
 
-header nav ul li a{
+header nav ul li a {
   font-size: 1.5rem;
   text-decoration: none;
 }
 
 /* ------------------------- Main 共通 ------------------------- */
-main{
-  height: 90vh;
+main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-color: var(--base-color_opacity);
   background-size: cover;
 }
 
+/*--- index->main ---*/
+#index-main {
+  justify-content: center;
+  gap: 20vw;
+}
+
+#index-left {
+  padding-left: 5vw;
+  width: 20vw;
+}
+
+#index-right {
+  padding-right: 5vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#index-right h1 {
+  width: 100%;
+  font-size: 60px;
+  text-align: center;
+  line-height: 1em;
+  margin-top: 3rem;
+}
+
+#index-article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+#index-article section {
+  width: 95%;
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+#index-article section:nth-child(2) {
+  margin-left: 3em;
+}
+
+#index-article section:nth-child(3) {
+  margin-left: 6em;
+}
+
+#index-article section:nth-child(4) {
+  margin-left: 9em;
+}
+
+#index-article section h2 {
+  font-size: 30px;
+}
+
+#index-article section p {
+  font-size: 20px;
+}
+
+#index-article section .navimg {
+  width: 20rem;
+}
+
+#index-article section a img {
+  width: 10rem;
+  position: absolute;
+  right: 0;
+}
 
 /* ------------------------- Footer 共通 ------------------------- */
-footer
+footer {
+  background-image: url("../images/background_header_footer.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
