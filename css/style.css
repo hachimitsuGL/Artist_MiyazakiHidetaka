@@ -48,6 +48,22 @@ a {
   background-image: url("../images/background_index.jpg");
 }
 
+#info-wrapper {
+  background-image: url("../images/background_index.jpg");
+}
+
+#portfolio-wrapper {
+  background-image: url("../images/background_index.jpg");
+}
+
+#eldenring-wrapper {
+  background-image: url("../images/background_index.jpg");
+}
+
+#analysis-wrapper {
+  background-image: url("../images/background_index.jpg");
+}
+
 /* ------------------------- HEADER ------------------------- */
 header {
   background-image: url("../images/background_header_footer.png");
@@ -73,6 +89,7 @@ header nav ul li a {
 
 /* ------------------------- Main 共通 ------------------------- */
 main {
+  min-height: 90vh;
   display: flex;
   background-color: var(--base-color_opacity);
   background-size: cover;
@@ -99,7 +116,7 @@ main {
   width: 100%;
   font-size: 60px;
   text-align: center;
-  line-height: 1em;
+  line-height: 1.2em;
   margin-top: 3rem;
 }
 
@@ -118,15 +135,15 @@ main {
 }
 
 #index-article section:nth-child(2) {
-  margin-left: 3em;
+  margin-left: 1.5vw;
 }
 
 #index-article section:nth-child(3) {
-  margin-left: 6em;
+  margin-left: 3vw;
 }
 
 #index-article section:nth-child(4) {
-  margin-left: 9em;
+  margin-left: 4.5vw;
 }
 
 #index-article section h2 {
@@ -137,14 +154,26 @@ main {
   font-size: 20px;
 }
 
-#index-article section .navimg {
+#index-article section a .navimg {
   width: 20rem;
 }
 
-#index-article section a img {
+#index-article section a .nav_button {
   width: 10rem;
   position: absolute;
   right: 0;
+}
+
+/*--- info->main ---*/
+
+#info-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#info-main h1 {
+  text-align: center;
+  width: 100%;
 }
 
 /* ------------------------- Footer 共通 ------------------------- */
