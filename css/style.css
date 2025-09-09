@@ -6,8 +6,30 @@
   --base-color: #242424;
   --base-color_opacity: rgba(36, 36, 36, 0.3);
   --accent-color: #AE904B;
+  --accent-glow-color: rgba(174, 144, 75, 0.7);
   --text-color: #E0E0E0;
   --heading-color: #FFFFFF;
+  /*fire*/
+  --cinder-color-hot: #D4C6AB;
+  --cinder-color-main: #A9531F;
+  --cinder-color-glow: rgba(99, 48, 14, 0.7); 
+}
+/* ----------- fire drop-shadow animation ----------*/
+@keyframes flicker-drop-shadow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px var(--cinder-color-hot))
+            drop-shadow(0 0 15px var(--cinder-color-main))
+            drop-shadow(0 0 30px var(--cinder-color-glow));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px var(--cinder-color-hot)) 
+            drop-shadow(0 0 20px var(--cinder-color-main)) 
+            drop-shadow(0 0 45px var(--cinder-color-glow));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -158,10 +180,20 @@ main {
   width: 20rem;
 }
 
+#index-article section a .navimg:hover {
+  filter: drop-shadow(0 0 10px var(--cinder-color-main)); /* 初始的火焰光晕 */
+  animation: flicker-drop-shadow 1.5s infinite linear; /* 应用新的动画 */
+}
+
 #index-article section a .nav_button {
   width: 10rem;
   position: absolute;
   right: 0;
+}
+
+#index-article section a .nav_button:hover {
+  filter: drop-shadow(0 0 10px var(--cinder-color-main)); /* 初始的火焰光晕 */
+  animation: flicker-drop-shadow 1.5s infinite linear; /* 应用新的动画 */
 }
 
 /*--- info->main ---*/
@@ -175,6 +207,73 @@ main {
   text-align: center;
   width: 100%;
 }
+
+/*--- portfolio->main ---*/
+#portfolio-main {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#portfolio-main h1 {
+  font-size: 45px;
+  margin: 5rem;
+}
+
+#portfolio-main article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  gap: 7.5vh;
+  margin: 5%;
+}
+
+#portfolio-main article section {
+  display: flex;
+  gap: 2rem;
+}
+
+#portfolio-main article section h2 {
+  font-size: 25px;
+}
+
+#portfolio-main article section h3 {
+  font-size: 20px;
+}
+
+#portfolio-main article section p {
+  font-size: 18px;
+}
+
+#portfolio-main article section:nth-child(even) div {
+  text-align: right;
+}
+
+#eldenring_button {
+  color: var(--primary-color);
+  background-color: var(--accent-color);
+  text-decoration: none;
+  line-height: 3em;
+  font-size: 25px;
+  font-family: 'Cinzel', serif;
+  padding: 0.5em 0.75em;
+  transition: all 0.3s ease;
+}
+
+#eldenring_button:hover {
+  background-color: #c7a95f;
+  text-decoration: none;
+  box-shadow: 0 0 15px var(--accent-glow-color);
+  transform: translateY(-2px);
+}
+
+#portfolio-main article section img {
+  width: 30vw;
+  border: 5px solid var(--accent-color);
+}
+
 
 /* ------------------------- Footer 共通 ------------------------- */
 footer {
