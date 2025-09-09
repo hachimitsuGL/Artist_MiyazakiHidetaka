@@ -6,6 +6,7 @@
   --base-color: #242424;
   --base-color_opacity: rgba(36, 36, 36, 0.3);
   --accent-color: #AE904B;
+  --accent-bright-color:#c7a95f;
   --accent-glow-color: rgba(174, 144, 75, 0.7);
   --text-color: #E0E0E0;
   --heading-color: #FFFFFF;
@@ -70,7 +71,7 @@ a {
   background-image: url("../images/background_index.jpg");
 }
 
-#info-wrapper {
+#about-wrapper {
   background-image: url("../images/background_index.jpg");
 }
 
@@ -107,6 +108,11 @@ header nav ul {
 header nav ul li a {
   font-size: 1.5rem;
   text-decoration: none;
+}
+
+header nav ul li a:hover{
+  color:var(--accent-bright-color);
+  text-shadow: 0 0 15px var(--accent-glow-color);
 }
 
 /* ------------------------- Main 共通 ------------------------- */
@@ -196,14 +202,14 @@ main {
   animation: flicker-drop-shadow 1.5s infinite linear; /* 应用新的动画 */
 }
 
-/*--- info->main ---*/
+/*--- about->main ---*/
 
-#info-main {
+#about-main {
   display: flex;
   flex-wrap: wrap;
 }
 
-#info-main h1 {
+#about-main h1 {
   text-align: center;
   width: 100%;
 }
@@ -263,7 +269,7 @@ main {
 }
 
 #eldenring_button:hover {
-  background-color: #c7a95f;
+  background-color: var(--accent-bright-color);
   text-decoration: none;
   box-shadow: 0 0 15px var(--accent-glow-color);
   transform: translateY(-2px);
