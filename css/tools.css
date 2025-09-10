@@ -1,5 +1,22 @@
 @charset "UTF-8";
+/* ----------- button -----------*/
+.button {
+  color: var(--primary-color);
+  background-color: var(--accent-color);
+  text-decoration: none;
+  line-height: 3em;
+  font-size: 20px;
+  font-family: 'Cinzel', serif;
+  padding: 0.5em 0.75em;
+  transition: all 0.3s ease;
+}
 
+.button:hover {
+  background-color: var(--accent-bright-color);
+  text-decoration: none;
+  box-shadow: 0 0 15px var(--accent-glow-color);
+  transform: translateY(-2px);
+}
 /* ----------- portfolio->main->skew-gallery ----------- */
 .skew-gallery {
   display: flex;

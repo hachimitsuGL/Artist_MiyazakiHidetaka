@@ -6,31 +6,44 @@
   --base-color: #242424;
   --base-color_opacity: rgba(36, 36, 36, 0.3);
   --accent-color: #AE904B;
-  --accent-bright-color:#c7a95f;
+  --accent-bright-color: #c7a95f;
   --accent-glow-color: rgba(174, 144, 75, 0.7);
   --text-color: #E0E0E0;
   --heading-color: #FFFFFF;
   /*fire*/
   --cinder-color-hot: #D4C6AB;
   --cinder-color-main: #A9531F;
-  --cinder-color-glow: rgba(99, 48, 14, 0.7); 
+  --cinder-color-glow: rgba(99, 48, 14, 0.7);
 }
+
 /* ----------- fire drop-shadow animation ----------*/
 @keyframes flicker-drop-shadow {
-  0%, 100% {
-    filter: drop-shadow(0 0 5px var(--cinder-color-hot))
-            drop-shadow(0 0 15px var(--cinder-color-main))
-            drop-shadow(0 0 30px var(--cinder-color-glow));
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px var(--cinder-color-hot)) drop-shadow(0 0 15px var(--cinder-color-main)) drop-shadow(0 0 30px var(--cinder-color-glow));
   }
+
   50% {
-    filter: drop-shadow(0 0 8px var(--cinder-color-hot)) 
-            drop-shadow(0 0 20px var(--cinder-color-main)) 
-            drop-shadow(0 0 45px var(--cinder-color-glow));
+    filter: drop-shadow(0 0 8px var(--cinder-color-hot)) drop-shadow(0 0 20px var(--cinder-color-main)) drop-shadow(0 0 45px var(--cinder-color-glow));
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -48,7 +61,8 @@ h6 {
   color: var(--heading-color);
 }
 
-a {
+a,
+.accent {
   color: var(--accent-color);
 }
 
@@ -110,8 +124,8 @@ header nav ul li a {
   text-decoration: none;
 }
 
-header nav ul li a:hover{
-  color:var(--accent-bright-color);
+header nav ul li a:hover {
+  color: var(--accent-bright-color);
   text-shadow: 0 0 15px var(--accent-glow-color);
 }
 
@@ -187,8 +201,8 @@ main {
 }
 
 #index-article section a .navimg:hover {
-  filter: drop-shadow(0 0 10px var(--cinder-color-main)); /* 初始的火焰光晕 */
-  animation: flicker-drop-shadow 1.5s infinite linear; /* 应用新的动画 */
+  filter: drop-shadow(0 0 10px var(--cinder-color-main));
+  animation: flicker-drop-shadow 1.5s infinite linear;
 }
 
 #index-article section a .nav_button {
@@ -198,8 +212,8 @@ main {
 }
 
 #index-article section a .nav_button:hover {
-  filter: drop-shadow(0 0 10px var(--cinder-color-main)); /* 初始的火焰光晕 */
-  animation: flicker-drop-shadow 1.5s infinite linear; /* 应用新的动画 */
+  filter: drop-shadow(0 0 10px var(--cinder-color-main));
+  animation: flicker-drop-shadow 1.5s infinite linear;
 }
 
 /*--- about->main ---*/
@@ -207,11 +221,53 @@ main {
 #about-main {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 #about-main h1 {
   text-align: center;
   width: 100%;
+  margin-top: 3rem;
+}
+
+#about-main article {
+  display: flex;
+  width: 80vw;
+  gap: 3vw;
+  margin: 3rem;
+}
+
+#about-main article .about-images {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem
+}
+
+#about-main article .about-images img {
+  max-width: 20vw;
+  border: 3px solid var(--accent-color);
+}
+
+#about-main article .about-images img:hover {
+  box-shadow: 0 0 30px var(--accent-bright-color);
+}
+
+#about-main article .about-contents {
+  min-width: 50vw;
+  background-color: rgba(36, 36, 36, 0.7);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#about-main article .about-contents section ul {
+  padding: 1rem;
+}
+
+#about-main article .about-contents .button_container {
+  text-align: right;
 }
 
 /*--- portfolio->main ---*/
@@ -257,27 +313,34 @@ main {
   text-align: right;
 }
 
-#eldenring_button {
-  color: var(--primary-color);
-  background-color: var(--accent-color);
-  text-decoration: none;
-  line-height: 3em;
-  font-size: 25px;
-  font-family: 'Cinzel', serif;
-  padding: 0.5em 0.75em;
-  transition: all 0.3s ease;
-}
-
-#eldenring_button:hover {
-  background-color: var(--accent-bright-color);
-  text-decoration: none;
-  box-shadow: 0 0 15px var(--accent-glow-color);
-  transform: translateY(-2px);
-}
-
 #portfolio-main article section img {
   width: 30vw;
   border: 5px solid var(--accent-color);
+}
+
+/*--- eldenring->main ---*/
+#eldenring-main{
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  gap:3vw;
+}
+
+#map {
+  width: 45%;
+  height: 90%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: black;
+  border: 1px solid var(--accent-color);
+}
+
+#slider {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
 }
 
 
