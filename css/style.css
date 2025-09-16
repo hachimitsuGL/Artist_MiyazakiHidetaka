@@ -319,13 +319,24 @@ main {
 }
 
 /*--- eldenring->main ---*/
-#eldenring-main{
+#eldenring-main {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+}
+#eldenring-main article{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
   gap:3vw;
 }
-
+#eldenring-main h1{
+  margin-top: 3rem;
+  text-align: center;
+}
 #map {
   width: 45%;
   height: 90%;
@@ -343,6 +354,40 @@ main {
   z-index: 5;
 }
 
+.info {
+  width: 40%;
+  padding: 12px;
+  overflow: auto;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.info img {
+  display: block;
+  max-width: 100%;
+  border-radius: 8px;
+  margin: .5rem 0;
+}
+.info h2{
+  font-size: 30px;
+}
+.info p {
+  font-size: 20px;
+}
+
+/* 图钉的交互效果（可选） */
+.leaflet-marker-icon.poi-marker {
+  transition: transform .15s ease;
+}
+
+.leaflet-marker-icon.poi-marker:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.leaflet-marker-icon.poi-marker--active {
+  transform: translateY(-4px) scale(1.12);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .45));
+}
 
 /* ------------------------- Footer 共通 ------------------------- */
 footer {
