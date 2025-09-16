@@ -375,7 +375,6 @@ main {
   font-size: 20px;
 }
 
-/* 图钉的交互效果（可选） */
 .leaflet-marker-icon.poi-marker {
   transition: transform .15s ease;
 }
@@ -386,7 +385,56 @@ main {
 
 .leaflet-marker-icon.poi-marker--active {
   transform: translateY(-4px) scale(1.12);
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .45));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .85));
+}
+
+/*--- analysis->main ---*/
+#analysis-main{
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+#analysis-main h1{
+  margin-top: 3rem;
+  font-size: 45px;
+}
+#analysis-main .gallery{
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
+}
+#analysis-main .gallery h2{
+  font-size: 30px;
+  text-align: center;
+}
+#analysis-main .gallery ul{
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  justify-content: center;
+}
+
+#analysis-main .gallery img{
+  width: 20vw;
+  border: 4px solid var(--accent-color);
+  transition: 0.5s ease;
+}
+#analysis-main .gallery img:hover{
+  cursor: pointer;
+  scale: 1.05;
+  box-shadow: 0 0 30px var(--accent-bright-color);
+}
+
+#analysis-main .gallery div li{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:0.5rem;
+}
+#analysis-main .gallery div li p{
+  font-size: 20px;
+  text-align: center;
 }
 
 /* ------------------------- Footer 共通 ------------------------- */
