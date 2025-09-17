@@ -359,14 +359,20 @@ main {
   padding: 12px;
   overflow: auto;
   color: #fff;
-  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap:2rem;
 }
 
 .info img {
   display: block;
   max-width: 100%;
-  border-radius: 8px;
-  margin: .5rem 0;
+  border: 4px solid var(--accent-color);
+}
+.info img:hover{
+  transition: transform 0.5s ease;
+  box-shadow: 0 0 10px var(--accent-bright-color);
 }
 .info h2{
   font-size: 30px;
