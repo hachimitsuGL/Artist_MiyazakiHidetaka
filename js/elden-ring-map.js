@@ -35,22 +35,22 @@ map.fitBounds([
 L.control.mousePosition().addTo(map);
 
 
-// ========== 0) 工具函数 ==========
+// ========== 0) ツール関数 ==========
 function escapeHtml(s = "") {
   return s.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
 }
 
-// 若你的底图是用 L.CRS.Simple（常见于切图的大图），你可能掌握的是“像素坐标”。
-// 可以用这个小工具把像素坐标转成 Leaflet 需要的 LatLng：
+// ベースマップが L.CRS.Simple（スライスした大型画像で一般的）の場合、手元の座標は「ピクセル座標」であることが多い。
+// このユーティリティでピクセル座標を Leaflet の LatLng に変換できる:
 function fromPixels(pxX, pxY, atZoom = (map && map.getMaxZoom ? map.getMaxZoom() : 0)) {
-  // 返回 [lat, lng]
+  // [lat, lng] を返す
   return map.unproject([pxX, pxY], atZoom);
 }
 
-// ========== 1) 信息面板渲染 ==========
+// ========== 1) 情報パネルのレンダリング ==========
 const infoBox = document.querySelector('#poi-info') || document.querySelector('.info');
 function nl2br(s = '') {
-  // 先转义，再把 \n 变成 <br>
+  // 先にエスケープし、\n を <br> に置換する
   return escapeHtml(s).replace(/\r?\n/g, '<br>');
 }
 
@@ -65,26 +65,26 @@ function renderInfo(poi) {
   `;
 }
 
-// ========== 2) 自定义图标 ==========
-// 1) 按原图比例 590:1060 设置显示尺寸（像素）
-//    你只需要改这个高度即可（例如 48、56、64 等），宽度会自动按比例算。
+// ========== 2) カスタムアイコン ==========
+// 1) 元画像の比率 590:1060 に基づいて表示サイズ（ピクセル）を設定
+//    変更すべきは高さのみ（例: 48、56、64 など）。幅は比率から自動計算される。
 const PIN_HEIGHT = 56;
-const PIN_RATIO = 590 / 1060; // 宽高比
+const PIN_RATIO = 590 / 1060; // 幅:高さ の比
 const PIN_WIDTH = Math.round(PIN_HEIGHT * PIN_RATIO);
 
-// 2) 锚点在图片底部正中（x = 宽度一半，y = 高度）
-//    这样大头针“尖端”就会准确落在坐标点上。
+// 2) アンカーは画像の下端中央（x = 幅の半分，y = 高さ）
+//    こうすることでピンの先端が座標上に正確に合う。
 const pinIcon = L.icon({
   iconUrl: 'images/thumbtack_icon.png',
   iconSize: [PIN_WIDTH, PIN_HEIGHT],
   iconAnchor: [Math.round(PIN_WIDTH / 2), PIN_HEIGHT],
-  // 可选：给提示/tooltip使用
+  // 任意: ツールチップ用
   tooltipAnchor: [0, -Math.round(PIN_HEIGHT * 0.8)]
 });
 
-// ========== 3) 兴趣点数据（示例） ==========
-// coords 使用 [lat, lng]（Leaflet 坐标）。如果你的地图是 L.CRS.Simple，
-// 而你手里是像素坐标 (pxX, pxY)，则请用 fromPixels(pxX, pxY) 转换。
+// ========== 3) POI データ（例） ==========
+// coords は [lat, lng]（Leaflet 座標）を使用。地図が L.CRS.Simple の場合、
+// 手元がピクセル座標 (pxX, pxY) なら fromPixels(pxX, pxY) で変換すること。
 const POIS = [{
   id: 'limgrave',
   name: 'リムグレイブ',
@@ -164,38 +164,37 @@ const POIS = [{
 }
 ];
 
-// ========== 4) 将 POI 加到地图 ==========
+// ========== 4) POI を地図に追加 ==========
 const markerLayer = L.layerGroup().addTo(map);
 let activeMarker = null;
 
 POIS.forEach((p) => {
   const marker = L.marker(p.coords, { icon: pinIcon, title: p.name });
   marker.on('add', function () {
-    // 给图钉加个自定义 class，方便样式控制；并设置无障碍 alt（可选）
+    // ピンにカスタムクラスを付与してスタイル制御をしやすくする。任意でアクセシビリティ向け alt も設定。
     if (this._icon) {
       this._icon.classList.add('poi-marker');
       this._icon.setAttribute('alt', p.name);
     }
   });
   marker.on('click', function () {
-    // 激活态样式
+    // アクティブ状態のスタイル
     if (activeMarker && activeMarker._icon) {
       activeMarker._icon.classList.remove('poi-marker--active');
     }
     if (this._icon) this._icon.classList.add('poi-marker--active');
     activeMarker = this;
 
-    // 更新信息面板
+    // 情報パネルを更新
     renderInfo(p);
   });
   marker.addTo(markerLayer);
 });
 
-// ========== 5) 体验小优化（可选） ==========
-map.on('click', () => {
+// 2) 余白クリック: アクティブ状態のみ解除し、右側の情報は**消さない**。
+map.on('click', (e) => {
   if (activeMarker && activeMarker._icon) {
     activeMarker._icon.classList.remove('poi-marker--active');
+    activeMarker = null;
   }
-  activeMarker = null;
-  if (infoBox) infoBox.innerHTML = '<h2>探索の導き</h2><p>地図上のマーカーをクリックして、詳細を確認しましょう。</p>';
 });
