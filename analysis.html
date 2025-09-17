@@ -14,17 +14,24 @@
 
   <link rel="icon" type="image/x-icon" href="++++">
 </head>
-<!-- Lightbox Overlay -->
-<div class="lb-overlay" id="lbOverlay" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="lb-stage" id="lbStage">
-    <span class="lb-close" id="lbClose" aria-label="Close"></span>
-    <div class="lb-nav prev" id="lbPrev" aria-label="Previous image"></div>
-    <img class="lb-media" id="lbImg" alt="">
-    <div class="lb-nav next" id="lbNext" aria-label="Next image"></div>
-    <div class="lb-caption" id="lbCaption"></div>
-  </div>
-</div>
+
 <body>
+  <!-- Lightbox Overlay -->
+  <div class="lb-overlay" id="lbOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+    <div class="lb-stage" id="lbStage">
+      <span class="lb-close" id="lbClose" aria-label="Close"></span>
+      <div class="lb-figure" id="lbFigure">
+        <div class="lb-nav prev" id="lbPrev" aria-label="Previous image"></div>
+        <img class="lb-media" id="lbImg" alt="">
+        <div class="lb-nav next" id="lbNext" aria-label="Next image"></div>
+      </div>
+
+      <div class="lb-caption" id="lbCaption">
+        <h3 class="lb-title" id="lbTitle"></h3>
+        <div class="lb-body" id="lbBody"></div>
+      </div>
+    </div>
+  </div>
   <div class="wrapper" id="analysis-wrapper">
     <header>
       <nav>
@@ -40,51 +47,64 @@
 
 
     <main id="analysis-main">
-      <h1>代表的な作り物の分析</h1>
+      <h1>宮崎英高の美学：建築・人物・道具から読む物語</h1>
       <article class="gallery">
-        <h2>建築</h2>
+        <h2>空間が語る（建築・地点）</h2>
         <ul id="structures">
           <li>
-            <img src="images/analysis_boletaria-palace.jpg" alt="++++">
+            <img src="images/analysis_boletaria-palace.jpg" alt="++++" data-detail="“試練の建築”というシリーズ的原型。城門—橋—櫓の直列は世界観説明に先行して、難度曲線と視覚スケールで“王権＝選別機”を証明する。ここで物語はテキストでなく、危険度配列と視界設計のグラマーで語られる。
+難易度は罰ではなく“制度の可視化”である。炎と竜は演出ではなく通行権のプロトコルを担い、プレイヤーが安全域を学ぶ過程自体が政治性（誰が通れるか）を理解する手段になる。">
             <p>ボーレタリア王城<br />(デモンズソウル)</p>
           </li>
           <li>
-            <img src="images/analysis_anor-londo.webp" alt="++++">
+            <img src="images/analysis_anor-londo.webp" alt="++++"
+              data-detail="宮崎作品における“聖性の反転”は、光そのものを疑問化する装置として現れる。アノール・ロンドでは、垂直性と空隙が信仰の威光を示す一方、現実には到達可能性の困難（細い梁、侵入者配置、長距離動線）が光の権威を実践的に掘り崩す。
+レベルデザインは“権威＝到達の儀式”として実装される。移動経路が視線を上方へ導き、同時に落下リスクと遠距離圧力で緊張を増幅する。ここでの教訓は、神話的繁栄を体験設計で“疑似検証”させ、プレイヤーに聖／虚の二重性を自分の身体で理解させる点にある。">
             <p>アノール・ロンド<br />(ダークソウル)</p>
           </li>
           <li>
-            <img src="images/analysis_forsaken-castle.jpg_large" alt="++++">
-            <p>廃城カインハースト<br/>(ブラッドボーン)</p>
+            <img src="images/analysis_forsaken-castle.jpg_large" alt="++++" data-detail="“文化の分岐”を建築意匠で可視化する例。ヤーナム本流の医療・血学とは別系譜の貴族制が、ゴシック様式・寒色・雪景という視覚記号で一貫提示され、敵配置や毒沼の管理で“血の貴さ”が実は腐敗の制度であることをプレイ経験に落とし込む。
+美学は単なる装飾ではなく、制度批判のメディウムとして機能する。回廊の細長い動線と待ち伏せの位相は、見栄えの華麗さと進行の不自由を併置し、“優雅＝支配の統辞”であることを身体的に示す。">
+            <p>廃城カインハースト<br />(ブラッドボーン)</p>
           </li>
         </ul>
-        <h2>人物</h2>
+        <h2>身体が語る（人物・ボス）</h2>
         <ul id="characters">
           <li>
-            <img src="images/analysis_knight-artorias.jpg" alt="++++">
-            <p>騎士アルトリウス<br/>(ダークソウル)</p>
+            <img src="images/analysis_knight-artorias.jpg" alt="++++" data-detail="“英雄神話の解体”は、設定の逆説（救済者が既に破綻している）を戦闘設計に埋め込むことで成立する。片腕・崩れた姿勢・攻撃間の隙の少なさは、伝説の栄光ではなく“抗いの痕跡”を操作難度として伝える。
+テキストは最小限、証明はボス行動学に委譲される。攻略の学習曲線は、彼が守ろうとした約束の重さ＝深淵の粘性を可視化し、勝利は称揚でなく“理解の到達”として機能する。">
+            <p>騎士アルトリウス<br />(ダークソウル)</p>
           </li>
           <li>
-            <img src="images/analysis_lady-maria.jpg" alt="++++">
-            <p>時計塔のマリア<br/>(ブラッドボーン)</p>
+            <img src="images/analysis_lady-maria.jpg" alt="++++" data-detail="宮崎作品の倫理は“美と暴の同居”として表現される。マリアの連携速度、出血リスク、間合い管理は、礼儀作法のような所作で残酷さを包む設計で、プレイヤーに“優雅＝抑圧の形式”を学ばせる。
+物語は会話でなく、フェーズ移行とモーションの節度で進む。静謐→血刃の解禁という構成は、悔恨の物語的背景を一挙手一投足の規律に埋め、キャラクターの理念を操作体験として理解させる。">
+            <p>時計塔のマリア<br />(ブラッドボーン)</p>
           </li>
           <li>
-            <img src="images/analysis_genichiro_ashina.jpg" alt="++++">
-            <p>葦名弦一郎<br/>(隻狼：シャドウズダイトゥワイス)</p>
+            <img src="images/analysis_genichiro_ashina.jpg" alt="++++" data-detail="“手触りの倫理”の典型。雷返し・体幹・弾きの三位一体により、勝利原理が“正しさ”でなく“生存を選び抜く技術”にあることを告げる。弦一郎はその規範の体現で、敗北から再挑戦へ誘導する導師として配置される。
+彼の台詞よりも、攻防リズムの設計がイデオロギーを語る。学習に応じて“雷を掴める”ようになる過程そのものが、武士道の更新（名目より生）をプレイヤーに内面化させる。">
+            <p>葦名弦一郎<br />(隻狼：シャドウズダイトゥワイス)</p>
           </li>
         </ul>
-        <h2>道具・</h2>
+        <h2>断片が語る（道具・物語）</h2>
         <ul id="props">
           <li>
-            <img src="" alt="++++">
-            <p></p>
+            <img src="images/analysis_madmans-knowledge.jpg" alt="++++"
+              data-detail="“上位者の智慧”に触れた者の頭蓋で、使用すると啓蒙（Insight）が増加する――道具文は祝福と危険を並置し、理解が知覚の改変に直結することを匂わせる。実際に啓蒙の値が高まるほど、見える存在や敵挙動、演出の層が変容し、短いテキストが世界仕様そのものに波及する構造が体験化される。
+この設計は数値と形而上学の往還を中核に据える。知識の獲得がプレイヤーの視界（UI/敵/音）の再配線として現れ、“理解＝危うさ”という宇宙誌的テーマが操作の手触りに落ちる。高啓蒙時の副作用や“眼”の象徴をめぐる推測が絶えないのは、道具文が断定を避け、解釈の余白を仕様変更として保証するからである。ここに、比喩をプレイアブルに翻訳する宮崎英高の芸術性が明確に表れる。">
+            <p>狂人の智慧<br />(ブラッドボーン)</p>
           </li>
           <li>
-            <img src="" alt="++++">
-            <p></p>
+            <img src="images/analysis_black-eye-orb.jpg" alt="++++"
+              data-detail="深みの聖堂の“ロザリア”の亡骸に残された神秘のオーブで、入手後はアノール・ロンドの「王女の間」に至ると“震えだす”合図が出る。ここで使用すると、ロザリアを殺した薬指のレオナールの世界へ侵入でき、勝利すればロザリアのソウルを取り戻すことができる——という機能が、短い道具文と発動条件で提示される（入手経路と「王女の間」での使用可の導線は攻略資料に明記）。
+この道具が示す含意は、倫理や因果をテキストではなく条件づけ（場所・タイミング・トリガー）で語る宮崎英高の叙事設計にある。道具文には「復讐の証」といった最小限の語が置かれる一方で、実際の“復讐”はプレイヤーの行為（侵入・決闘）として実演され、しかもその舞台が聖性の象徴であるアノール・ロンドという反転の美学を帯びる。さらに“穏やかにイルシールを見つめる瞳”という含みは、善悪の直線化を避け、私的感情と制度（誓約）の軋みを想像させる余白を残す。説明を増やさず、合図→行為→理解の順で意味が立ち上がる——この翻訳（比喩をプレイアブルにすること）こそが、宮崎的叙事の芸術性である。">
+            <p>黒い瞳のオーブ<br />(ダークソウルⅢ)</p>
           </li>
           <li>
-            <img src="" alt="++++">
-            <p></p>
+            <img src="images/analysis_pinwheel.jpg" alt="++++"
+              data-detail="仙峯寺で見つかる小さな紙風車。童歌めいた道具文は所在と記憶をほのめかすに留まり、しかしNPC“小太郎”の誘導・結末に深く関わる。説明が少ないほど、地理配置や入手文脈が“何を選ぶか”というプレイヤーの判断へ圧縮され、物語は対話ではなく進路選択の形で輪郭を得る。
+赤白の配色は弔い・幼児性・境界の象徴として読まれ、寺の実験や“失われた子ら”の痕跡へと接続される。真白い風車との差異や“ここにいる”という反復が指す倫理的含意をめぐって推測が広がるが、肝要なのは、情報を拡張せず地名・配置・分岐に意味を分散させる語りの様式だ。こうしてプレイヤーは、自身の手で物語の倫理を回収する主体となり、宮崎的叙事の核心――沈黙と余白による共同執筆――が実現する。">
+            <p>赤白い風車<br />(隻狼：シャドウズダイトゥワイス)</p>
           </li>
         </ul>
       </article>

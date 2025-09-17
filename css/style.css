@@ -31,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 html,
@@ -402,12 +403,13 @@ main {
 }
 #analysis-main h1{
   margin-top: 3rem;
-  font-size: 45px;
+  font-size: 40px;
 }
 #analysis-main .gallery{
   display: flex;
   flex-direction: column;
   gap:1.5rem;
+  margin-bottom: 3rem;
 }
 #analysis-main .gallery h2{
   font-size: 30px;

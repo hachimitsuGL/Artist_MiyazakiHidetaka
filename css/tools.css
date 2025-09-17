@@ -1,5 +1,12 @@
 @charset "UTF-8";
+
 /* ----------- button -----------*/
+:root {
+  --lb-stage-max-w: min(90vw, 1200px);
+  --lb-stage-max-h: 86vh;
+  --lb-img-max-h: 50vh;
+}
+
 .button {
   color: var(--primary-color);
   background-color: var(--accent-color);
@@ -17,6 +24,7 @@
   box-shadow: 0 0 15px var(--accent-glow-color);
   transform: translateY(-2px);
 }
+
 /* ----------- portfolio->main->skew-gallery ----------- */
 .skew-gallery {
   display: flex;
@@ -33,7 +41,7 @@
   margin: 0 -15px;
   transform: skewX(-15deg);
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   border: 2px solid var(--accent-color)
 }
 
@@ -61,7 +69,7 @@
 }
 
 .skew-item:hover img {
-  transform: scale(1.8); 
+  transform: scale(1.8);
 }
 
 .skew-item .overlay {
@@ -86,7 +94,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
   transform: skewX(15deg) scale(1.7);
   transform-origin: center;
   z-index: 0;
@@ -95,7 +103,7 @@
 .overlay h2 {
   color: white;
   margin: 0;
-  transform: skewX(15deg); 
+  transform: skewX(15deg);
   font-size: 1.5rem;
 }
 
@@ -109,53 +117,90 @@
 .lb-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0); /* 初始透明，进入时过渡到 0.6 */
-  display: none; /* 由 JS 切换为 grid */
+  background: rgba(0, 0, 0, 0);
+  /* 初始透明，进入时过渡到 0.6 */
+  display: none;
+  /* 由 JS 切换为 grid */
   place-items: center;
   z-index: 9999;
   transition: background 300ms ease;
 }
 
-.lb-overlay.is-open { 
+.lb-overlay.is-open {
   display: grid;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 /* ===== 容器：稍微靠上一些的中心位置 ===== */
+/* 初始态（透明、略小、位置更居中一些） */
 .lb-stage {
+  display: grid;
+  grid-template-rows: auto max-content;
+  row-gap: 12px;
   position: relative;
-  max-width: min(90vw, 1200px);
-  max-height: 86vh;
-  transform: translateY(-6vh) scale(0.94); /* 初始状态：略小且稍下 */
+  max-width: var(--lb-stage-max-w);
+  max-height: var(--lb-stage-max-h);
+  transform: translateY(-6vh) scale(0.94);
   opacity: 0;
   transition: transform 380ms ease, opacity 300ms ease;
 }
 
+.lb-figure {
+  position: relative;
+  width: 100%;
+  height: var(--lb-img-max-h);
+  /* 例如 50vh / 70vh */
+  display: grid;
+  place-items: center;
+}
+
 .lb-overlay.is-open .lb-stage {
-  transform: translateY(-10vh) scale(1); /* 目标：稍微靠上居中 */
+  transform: translateY(-10vh) scale(1);
   opacity: 1;
 }
 
 /* ===== 图片本体 ===== */
 .lb-media {
-  display: block;
-  max-width: 100%;
-  max-height: 70vh; /* 给下面的描述留空间 */
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
   object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  display: block;
+  max-height: var(--lb-img-max-h);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* ===== 描述文本 ===== */
 .lb-caption {
   margin-top: 12px;
   text-align: center;
-  line-height: 1.6;
-  font-size: 0.98rem;
+  line-height: 1.65;
   color: #f3f3f3;
+  max-height: calc(var(--lb-stage-max-h) - var(--lb-img-max-h) - 24px);
+  overflow: auto;
+  padding: 0 8px;
+}
+
+.lb-title {
+  font-size: 1.06rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.lb-body {
+  font-size: 0.95rem;
+  opacity: 0.95;
+  /* 让长正文在窄屏也好看 */
+  max-width: 78ch;
+  margin: 0 auto;
+  word-break: break-word;
+  white-space: pre-wrap;
+  /* 直接支持换行 */
 }
 
 /* ===== 点击左右切换的热区 ===== */
+/* 左右两侧点击热区本身的位置，确保在左右而不是上下 */
 .lb-nav {
   position: absolute;
   top: 0;
@@ -165,26 +210,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
+  z-index: 1;
 }
 
-.lb-nav.prev { left: -6px; }
-.lb-nav.next { right: -6px; }
+.lb-nav.prev {
+  left: -6px;
+}
 
-/* 可视化淡淡的箭头提示（可替换为 SVG） */
+.lb-nav.next {
+  right: -6px;
+}
+
+/* 箭头图标（边框画法）：右箭头 rotate(45deg)，左箭头 rotate(225deg) */
 .lb-nav::after {
   content: '';
   display: block;
   border: solid #ffffffcc;
   border-width: 0 3px 3px 0;
+  /* 右和下边有线，配合旋转形成箭头 */
   padding: 9px;
+  /* 箭头大小 */
   transform: rotate(45deg);
-  opacity: 0.85;
+  opacity: 0.9;
 }
-.lb-nav.prev::after { transform: rotate(225deg); }
-.lb-nav:hover::after { opacity: 1; }
 
+.lb-nav.prev::after {
+  transform: rotate(135deg);
+}
+
+/* ← 左箭头 */
+.lb-nav.next::after {
+  transform: rotate(-45deg);
+}
+
+/* → 右箭头 */
 /* ===== 关闭按钮（可选） ===== */
 .lb-close {
   position: absolute;
@@ -193,21 +252,36 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(2px);
   display: grid;
   place-items: center;
   cursor: pointer;
+  z-index: 3;
 }
-.lb-close::before, .lb-close::after {
+
+.lb-close::before,
+.lb-close::after {
   content: '';
   position: absolute;
-  width: 18px; height: 2px; background: #fff;
+  width: 18px;
+  height: 2px;
+  background: #fff;
 }
-.lb-close::before { transform: rotate(45deg); }
-.lb-close::after  { transform: rotate(-45deg); }
+
+.lb-close::before {
+  transform: rotate(45deg);
+}
+
+.lb-close::after {
+  transform: rotate(-45deg);
+}
 
 /* ===== 无障碍与动效偏好 ===== */
 @media (prefers-reduced-motion: reduce) {
-  .lb-overlay, .lb-stage { transition: none !important; }
+
+  .lb-overlay,
+  .lb-stage {
+    transition: none !important;
+  }
 }
