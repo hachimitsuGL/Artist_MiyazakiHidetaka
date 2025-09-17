@@ -432,15 +432,16 @@ main {
   box-shadow: 0 0 30px var(--accent-bright-color);
 }
 
-#analysis-main .gallery div li{
+#analysis-main .gallery ul li{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap:0.5rem;
 }
-#analysis-main .gallery div li p{
+#analysis-main .gallery ul li p{
   font-size: 20px;
+  text-align: center;
 }
 
 /* ------------------------- Footer 共通 ------------------------- */

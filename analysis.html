@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>宮崎英高芸術分析</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tools.css">
   <!-- Google Fonts Import -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,16 @@
 
   <link rel="icon" type="image/x-icon" href="++++">
 </head>
-
+<!-- Lightbox Overlay -->
+<div class="lb-overlay" id="lbOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="lb-stage" id="lbStage">
+    <span class="lb-close" id="lbClose" aria-label="Close"></span>
+    <div class="lb-nav prev" id="lbPrev" aria-label="Previous image"></div>
+    <img class="lb-media" id="lbImg" alt="">
+    <div class="lb-nav next" id="lbNext" aria-label="Next image"></div>
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+</div>
 <body>
   <div class="wrapper" id="analysis-wrapper">
     <header>
@@ -84,4 +94,5 @@
       <p>Copyrights</p>
     </footer>
   </div>
+  <script src="js/lightbox.js"></script>
 </body>

@@ -102,3 +102,112 @@
 .skew-item:hover .overlay {
   opacity: 1;
 }
+
+
+/* analysis */
+/* ===== Lightbox 基本层 ===== */
+.lb-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0); /* 初始透明，进入时过渡到 0.6 */
+  display: none; /* 由 JS 切换为 grid */
+  place-items: center;
+  z-index: 9999;
+  transition: background 300ms ease;
+}
+
+.lb-overlay.is-open { 
+  display: grid;
+  background: rgba(0,0,0,0.6);
+}
+
+/* ===== 容器：稍微靠上一些的中心位置 ===== */
+.lb-stage {
+  position: relative;
+  max-width: min(90vw, 1200px);
+  max-height: 86vh;
+  transform: translateY(-6vh) scale(0.94); /* 初始状态：略小且稍下 */
+  opacity: 0;
+  transition: transform 380ms ease, opacity 300ms ease;
+}
+
+.lb-overlay.is-open .lb-stage {
+  transform: translateY(-10vh) scale(1); /* 目标：稍微靠上居中 */
+  opacity: 1;
+}
+
+/* ===== 图片本体 ===== */
+.lb-media {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh; /* 给下面的描述留空间 */
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+/* ===== 描述文本 ===== */
+.lb-caption {
+  margin-top: 12px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 0.98rem;
+  color: #f3f3f3;
+}
+
+/* ===== 点击左右切换的热区 ===== */
+.lb-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 22%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lb-nav.prev { left: -6px; }
+.lb-nav.next { right: -6px; }
+
+/* 可视化淡淡的箭头提示（可替换为 SVG） */
+.lb-nav::after {
+  content: '';
+  display: block;
+  border: solid #ffffffcc;
+  border-width: 0 3px 3px 0;
+  padding: 9px;
+  transform: rotate(45deg);
+  opacity: 0.85;
+}
+.lb-nav.prev::after { transform: rotate(225deg); }
+.lb-nav:hover::after { opacity: 1; }
+
+/* ===== 关闭按钮（可选） ===== */
+.lb-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.lb-close::before, .lb-close::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 2px; background: #fff;
+}
+.lb-close::before { transform: rotate(45deg); }
+.lb-close::after  { transform: rotate(-45deg); }
+
+/* ===== 无障碍与动效偏好 ===== */
+@media (prefers-reduced-motion: reduce) {
+  .lb-overlay, .lb-stage { transition: none !important; }
+}
