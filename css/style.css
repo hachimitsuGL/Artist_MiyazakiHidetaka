@@ -262,6 +262,9 @@ main {
   flex-direction: column;
   gap: 0.5rem;
 }
+#about-main article .about-contents section p{
+  padding: 0.5rem;
+}
 
 #about-main article .about-contents section ul {
   padding: 1rem;

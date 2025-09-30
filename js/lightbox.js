@@ -1,4 +1,3 @@
-
 (function () {
   const thumbs = Array.from(document.querySelectorAll('#analysis-main .gallery ul li'));
   if (!thumbs.length) return;
@@ -12,26 +11,26 @@
   const btnClose = document.getElementById('lbClose');
   let index = 0;
   let isOpen = false;
-  // 从现有 li > img 和 li > p 提取数据
-  // 节点获取：新增两个引用
+  // 既存の li > img と li > p からデータを抽出
+  // ノード取得：参照を2つ追加
   const titleEl = document.getElementById('lbTitle');
   const bodyEl = document.getElementById('lbBody');
 
-  // 重新收集：title 来自 <p>，detail 来自 data-detail
+  // 再収集：title は <p>、detail は data-detail から取得
   const items = thumbs.map(li => {
     const img = li.querySelector('img');
     const p = li.querySelector('p');
     const title = (p?.textContent || '').trim() || (img?.alt || '');
-    const detail = (img?.dataset.detail || '').trim(); // 正文只认 data-detail
+    const detail = (img?.dataset.detail || '').trim(); // 本文は data-detail のみを参照
     return {
       src: img?.getAttribute('src'),
       alt: img?.getAttribute('alt') || '',
-      title,    // 标题
-      detail    // 正文（允许为空）
+      title,    // タイトル
+      detail    // 本文（空でも可）
     };
   }).filter(it => !!it.src);
 
-  // 打开时分别渲染标题和正文
+  // 開くときにタイトルと本文をそれぞれ描画
   function open(i) {
     index = (i + items.length) % items.length;
     const it = items[index];
@@ -39,12 +38,12 @@
     imgEl.src = it.src;
     imgEl.alt = it.alt;
 
-    // 标题：永远显示（优先 p，没有就回退 alt）
+    // タイトル：常に表示（<p> を優先、なければ alt にフォールバック）
     titleEl.textContent = it.title || it.alt || '';
 
-    // 正文：优先 data-detail；如果你想“无正文时隐藏”，取消注释 if
+    // 本文：data-detail を優先。本文がない場合に非表示にしたいなら if のコメントを外す
     // if (!it.detail) { bodyEl.style.display = 'none'; } else { bodyEl.style.display = ''; }
-    // 这里支持换行（CSS 用了 white-space: pre-wrap），直接 textContent 即安全
+    // 改行に対応（CSS で white-space: pre-wrap を使用）、textContent で安全
     bodyEl.textContent = it.detail || '';
 
     overlay.classList.add('is-open');
@@ -60,7 +59,7 @@
     overlay.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('is-open');
     isOpen = false;
-    // 动画结束后再隐藏（避免闪烁）
+    // アニメーション終了後に非表示にする（チラつきを避ける）
     setTimeout(() => {
       if (!isOpen) {
         overlay.style.display = 'none';
@@ -73,29 +72,29 @@
   const prev = () => open(index - 1);
   const next = () => open(index + 1);
 
-  // 绑定缩略图点击
+  // サムネイルのクリックをバインド
   thumbs.forEach((li, i) => {
     const img = li.querySelector('img');
     if (!img) return;
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', () => open(i));
-    // 也可给 li 加点击：
+    // li にもクリックを付けられる：
     li.addEventListener('click', (e) => {
       if (e.target.tagName !== 'IMG') open(i);
     });
   });
 
-  // 导航与关闭
+  // ナビゲーションと閉じる
   btnPrev.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
   btnNext.addEventListener('click', (e) => { e.stopPropagation(); next(); });
   btnClose.addEventListener('click', (e) => { e.stopPropagation(); close(); });
 
-  // 点击背景关闭（只在点到 overlay 空白区域时触发）
+  // 背景クリックで閉じる（overlay の空白領域のみで発火）
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) close();
   });
 
-  // 键盘支持
+  // キーボード対応
   window.addEventListener('keydown', (e) => {
     if (!isOpen) return;
     if (e.key === 'Escape') close();
@@ -103,7 +102,7 @@
     if (e.key === 'ArrowRight') next();
   });
 
-  // 简单触摸滑动（左/右切图）
+  // 簡易スワイプ（左右で画像切替）
   let touchStartX = 0;
   overlay.addEventListener('touchstart', (e) => {
     if (!isOpen) return;
@@ -112,7 +111,7 @@
   overlay.addEventListener('touchend', (e) => {
     if (!isOpen) return;
     const dx = e.changedTouches[0].clientX - touchStartX;
-    const threshold = 40; // 需滑动一定距离才触发
+    const threshold = 40; // 一定距離以上のスワイプで発火
     if (dx > threshold) { prev(); }
     else if (dx < -threshold) { next(); }
   }, { passive: true });

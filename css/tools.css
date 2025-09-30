@@ -113,14 +113,14 @@
 
 
 /* analysis */
-/* ===== Lightbox 基本层 ===== */
+/* ===== Lightbox 基本レイヤー ===== */
 .lb-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0);
-  /* 初始透明，进入时过渡到 0.6 */
+  /* 初期は透明、表示時に 0.6 へ遷移 */
   display: none;
-  /* 由 JS 切换为 grid */
+  /* JS で grid に切り替える */
   place-items: center;
   z-index: 9999;
   transition: background 300ms ease;
@@ -131,8 +131,8 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-/* ===== 容器：稍微靠上一些的中心位置 ===== */
-/* 初始态（透明、略小、位置更居中一些） */
+/* ===== コンテナ：やや上寄りの中央位置 ===== */
+/* 初期状態（透明、やや小さく、やや中央寄り） */
 .lb-stage {
   display: grid;
   grid-template-rows: auto max-content;
@@ -149,7 +149,7 @@
   position: relative;
   width: 100%;
   height: var(--lb-img-max-h);
-  /* 例如 50vh / 70vh */
+  /* 例：50vh / 70vh */
   display: grid;
   place-items: center;
 }
@@ -159,7 +159,7 @@
   opacity: 1;
 }
 
-/* ===== 图片本体 ===== */
+/* ===== 画像本体 ===== */
 .lb-media {
   width: 100%;
   height: 100%;
@@ -169,9 +169,10 @@
   display: block;
   max-height: var(--lb-img-max-h);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  border: 1.5px solid var(--accent-color);
 }
 
-/* ===== 描述文本 ===== */
+/* ===== 説明テキスト ===== */
 .lb-caption {
   margin-top: 12px;
   text-align: center;
@@ -180,27 +181,31 @@
   max-height: calc(var(--lb-stage-max-h) - var(--lb-img-max-h) - 24px);
   overflow: auto;
   padding: 0 8px;
+  background-color: var(--base-color);
+  border:1.5px solid var(--accent-color);
 }
 
 .lb-title {
+  padding: 0.8rem;
   font-size: 1.06rem;
   font-weight: 700;
   margin: 0 0 4px;
 }
 
 .lb-body {
+  padding: 0.8rem;
   font-size: 0.95rem;
   opacity: 0.95;
-  /* 让长正文在窄屏也好看 */
+  /* 狭い画面でも長文を見やすく */
   max-width: 78ch;
   margin: 0 auto;
   word-break: break-word;
   white-space: pre-wrap;
-  /* 直接支持换行 */
+  /* 改行をそのまま反映 */
 }
 
-/* ===== 点击左右切换的热区 ===== */
-/* 左右两侧点击热区本身的位置，确保在左右而不是上下 */
+/* ===== 左右クリックで切り替えるホットエリア ===== */
+/* ホットエリアを左右に配置（上下ではなく左右） */
 .lb-nav {
   position: absolute;
   top: 0;
@@ -221,15 +226,15 @@
   right: -6px;
 }
 
-/* 箭头图标（边框画法）：右箭头 rotate(45deg)，左箭头 rotate(225deg) */
+/* 矢印アイコン（ボーダーで描画）：右矢印は rotate(45deg)、左矢印は rotate(225deg) */
 .lb-nav::after {
   content: '';
   display: block;
   border: solid #ffffffcc;
   border-width: 0 3px 3px 0;
-  /* 右和下边有线，配合旋转形成箭头 */
+  /* 右と下に線を入れ、回転で矢印形状に */
   padding: 9px;
-  /* 箭头大小 */
+  /* 矢印サイズ */
   transform: rotate(45deg);
   opacity: 0.9;
 }
@@ -238,13 +243,13 @@
   transform: rotate(135deg);
 }
 
-/* ← 左箭头 */
+/* ← 左矢印 */
 .lb-nav.next::after {
   transform: rotate(-45deg);
 }
 
-/* → 右箭头 */
-/* ===== 关闭按钮（可选） ===== */
+/* → 右矢印 */
+/* ===== 閉じるボタン（任意） ===== */
 .lb-close {
   position: absolute;
   top: -10px;
@@ -277,7 +282,7 @@
   transform: rotate(-45deg);
 }
 
-/* ===== 无障碍与动效偏好 ===== */
+/* ===== アクセシビリティとモーション嗜好 ===== */
 @media (prefers-reduced-motion: reduce) {
 
   .lb-overlay,
