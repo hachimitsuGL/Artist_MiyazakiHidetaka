@@ -1,6 +1,7 @@
 # 魂の匠 宮崎英高
 
 ゲームクリエイター・宮崎英高の人物像と作品の魅力を紹介するWebサイトです。ダークファンタジーの雰囲気を取り入れ、作品の世界観や芸術性をまとめています。
+GitHub Page：https://hachimitsugl.github.io/Artist_MiyazakiHidetaka/
 
 ## 主な内容
 
